@@ -17,6 +17,7 @@ async function mockFetchContentType(): Promise<ContentTypeProps> {
 async function main() {
     const author = await mockFetchContentType();
 
+    // the statement below could throw if we get an unexpected shape during runtime
     const authorId = author.sys.id;
 
     console.log(authorId);
