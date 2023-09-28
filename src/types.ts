@@ -1,4 +1,21 @@
-import { BasicMetaSysProps, ContentTypeFieldValidation, ContentTypeMetadata, KeyValueMap, SysLink } from "contentful-management";
+export interface MetaLinkProps {
+    type: string;
+    linkType: string;
+    id: string;
+}
+export interface SysLink {
+    sys: MetaLinkProps;
+}
+
+export interface BasicMetaSysProps {
+    type: string;
+    id: string;
+    version: number;
+    createdBy?: SysLink;
+    createdAt: string;
+    updatedBy?: SysLink;
+    updatedAt: string;
+}
 
 export type ContentTypeProps = {
     sys: BasicMetaSysProps & {
@@ -14,20 +31,20 @@ export type ContentTypeProps = {
     displayField: string;
     /** All the fields contained in this Content Type */
     fields: ContentFields[];
-    metadata?: ContentTypeMetadata;
+    // metadata?: ContentTypeMetadata;
 };
 
-interface Item {
+export interface Item {
     type: string;
     linkType?: string;
-    validations?: ContentTypeFieldValidation[];
+    // validations?: ContentTypeFieldValidation[];
 }
-interface ContentTypeAllowedResources {
-    type: string;
-    source: string;
-    contentTypes: string[];
-}
-export interface ContentFields<T = KeyValueMap> extends Item {
+
+
+// removed the default values, because `ts-to-zod` does not support generics
+//     allowedResources?: ContentTypeAllowedResources[];
+//     items?: Item;
+export interface ContentFields extends Item {
     id: string;
     name: string;
     required: boolean;
@@ -35,8 +52,6 @@ export interface ContentFields<T = KeyValueMap> extends Item {
     disabled?: boolean;
     omitted?: boolean;
     deleted?: boolean;
-    items?: Item;
     apiName?: string;
-    defaultValue?: T;
-    allowedResources?: ContentTypeAllowedResources[];
+    items?: Item;
 }
