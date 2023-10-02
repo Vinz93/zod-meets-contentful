@@ -3,20 +3,19 @@ import { createContentTypeFixture, createFieldFixture } from "../utils/createFix
 import { cloneDeep }  from 'lodash';
 import { contentTypePropsSchema } from "../schemas";
 
-async function mockFetchContentType(): Promise<ContentTypeProps> {
-
+async function getContentType(): Promise<ContentTypeProps> {
     const author = createContentTypeFixture('author', [createFieldFixture('name'), createFieldFixture('age')])
-
+    // mutation to the fields property
     const authorV2 = {
         fields: cloneDeep(author.fields)
     } as ContentTypeProps
 
-    return author
+    return authorV2
 }
 
 
 async function main() {
-    const author = await mockFetchContentType();
+    const author = await getContentType();
 
     const parsedAuthor = contentTypePropsSchema.parse(author);
 

@@ -1,7 +1,11 @@
 import { z } from "zod";
 
-const StarWarsPeopleResults = z.object({
+const StarWarsPeople = z.object({
     name: z.string(),
+})
+
+const StarWarsPeopleResults = z.object({
+    results: z.array(StarWarsPeople),
 })
 
 export const fetchStarWarsPeople = async () => {
