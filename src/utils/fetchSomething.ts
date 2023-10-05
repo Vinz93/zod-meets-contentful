@@ -17,3 +17,17 @@ export const fetchStarWarsPeople = async () => {
   
     return parsedData.results;
   };
+
+  export const fetchProducts = async () => {
+    const CMAClient = createClient({
+        accessToken: CMA_TOKEN,
+    })
+
+    const space = await CMAClient.getSpace(SPACE_ID);
+    const environment = await space.getEnvironment("master");
+    const products = await environment.getEntries({
+        content_type: "product",
+    });
+
+    return products.items;
+}
