@@ -40,7 +40,7 @@ export const fetchProducts = async () => {
 
 function groupPhoneByBrand(phones: PhoneResults) {
     const result = phones.reduce((acc: Record<string, number>, phone) => {
-        const brand = phone.fields.brand['en-US'];
+        const brand = phone.fields.brand['en-US'].toLowerCase();
         if (!acc[brand]) {
             acc[brand] = 0;
         }
