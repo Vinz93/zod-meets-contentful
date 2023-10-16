@@ -37,8 +37,10 @@ export const fetchProducts = async () => {
 }
 
 
-
-function groupPhoneByBrand(phones: PhoneResults) {
+type Locale = 'en-US' | 'es-AR' | undefined
+function groupPhoneByBrand(phones: PhoneResults, locale: Locale = "en-US") {
+    locale
+    // ^?
     const result = phones.reduce((acc: Record<string, number>, phone) => {
         const brand = phone.fields.brand['en-US'].toLowerCase();
         if (!acc[brand]) {

@@ -3,6 +3,7 @@
     "@contentful/changeset-create": "^0.19.1",
     "@types/node": "^20.7.1",
     "contentful-management": "^10.46.4",
+    "dotenv": "^16.3.1",
     "lodash": "^4.17.21",
     "typescript": "^5.2.2",
     "zod": "^3.22.2",
